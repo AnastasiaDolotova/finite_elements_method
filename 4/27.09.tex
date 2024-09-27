@@ -1,0 +1,46 @@
+\documentclass{bmstu}
+
+
+\usepackage{physics}
+\usepackage{pdfpages}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{upgreek}
+\usepackage{color, colortbl}
+\usepackage{listings}
+\usepackage{ amssymb }
+\usepackage{tikz}
+
+\graphicspath{
+	{graphics/}
+}
+
+\begin{document}
+	
+	\section*{27/09}
+	\begin{center}
+		\textbf{Одномерные краевые задачи}
+	\end{center}
+	\begin{equation}
+		- (ku')' + cu' + bu = f, \qquad x \in (0, l),
+	\end{equation}	
+	
+	где $u(x)$ - неизвестная функция; $k(x), \ c(x), \ b(x), \ f(x)$ - известные функции.
+	 \begin{center}
+	 \begin{tabular}{| c | c | p{10cm}|}
+		\hline
+		x = 0 & x = l  \\
+		\hline
+		1. $u(0) = U_0$ & 1. $u(l) = U_l$ \\
+		\hline
+		2. $k(0)u'(0) = - \sigma_0$ & 2. $k(l)u'(l) = \sigma_l$ \\
+		\hline
+		3. $k(0)u'(0) = -a_0(U_0 - u(0))$ & 3. $k(l)u'(l) = -a_l(U_l - u(l))$ \\
+		\hline
+	\end{tabular}
+	\end{center}
+	
+\end{document}
