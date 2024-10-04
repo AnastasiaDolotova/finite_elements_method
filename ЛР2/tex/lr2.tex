@@ -68,7 +68,7 @@
 \textbf{\textit{Задание}}
 \end{center}
 
-Составить уравнение движения для систем. 
+Составить уравнения движения для систем. 
 
 \begin{center}
 \textbf{\textit{Система 1}}
@@ -77,25 +77,119 @@
 \includegraphics[width=1\textwidth]{task1.png}
 
 Составим уравнения:
-\[\begin{cases}
+\begin{equation} \label{sist_1} 
+\begin{cases}
 m_1\ddot u_1 + t_1^{(2)} + t_2^{(1)} + s_1^{(1)} = 0 \\
 m_2\ddot u_2 + t_2^{(2)} + s_2^{(2)} + s_1^{(2)} = 0
-\end{cases}\]
+\end{cases}
+\end{equation}
 
-\[\begin{cases}
+\begin{equation} \label{k_s_1} 
+\begin{cases}
 t_1^{(2)} = k_1 u_1\\
-t_2^{(1)} = k_2 (u_2 - u_1)\\
-t_2^{(2)} = 
-\end{cases}\]
+t_2^{(1)} = k_2 (u_1 - u_2)\\
+t_2^{(2)} = k_2 (u_2 - u_1)\\
+s_1^{(1)} = c_1 (\dot u_1 - \dot u_2)\\
+s_2^{(2)} = c_2 \dot u_2\\
+s_1^{(2)} = c_1 (\dot u_2 - \dot u_1)\\
+\end{cases}
+\end{equation}
 
+Подставляем \eqref{k_s_1} в \eqref{sist_1}:
+\[
+\begin{cases}
+m_1\ddot u_1 + k_1 u_1 + k_2 (u_1 - u_2) + c_1 (\dot u_1 - \dot u_2) = 0 \\
+m_2\ddot u_2 + k_2 (u_2 - u_1) + c_2 \dot u_2 + c_1 (\dot u_2 - \dot u_1) = 0
+\end{cases}
+\]
 
+В матричном виде:
+\[
+M \ddot q + C \dot q + K q = 0
+\]
 
+\[
+M = \begin{pmatrix}
+m_1 & 0 \\
+0 & m_2
+\end{pmatrix},\ \ 
+C = \begin{pmatrix}
+c_1 & -c_1 \\
+-c_1 & c_1 + c_2
+\end{pmatrix},\ \ 
+K = \begin{pmatrix}
+k_1 + k_2 & -k_2 \\
+-k_2 & k_2
+\end{pmatrix}
+\]
 
+\newpage
+\begin{center}
+\textbf{\textit{Система 2}}
+\end{center}
 
+\includegraphics[width=1\textwidth]{task2.png}
 
+Составим уравнения:
+\begin{equation} \label{sist_2} 
+\begin{cases}
+m_1\ddot u_1 + t_1^{(2)} + t_4^{(1)} + t_5^{(2)} + s_1^{(2)} + s_2^{(1)} = 0\\
+m_2\ddot u_2 + t_1^{(1)} + t_2^{(2)}+ t_4^{(2)} + t_3^{(1)}  + s_2^{(2)} + s_3^{(1)} = 0\\
+m_3\ddot u_3 + t_2^{(1)} + t_3^{(2)} + s_3^{(2)} = 0 
+\end{cases}
+\end{equation}
 
+\begin{equation} \label{k_s_2} 
+\begin{cases}
+t_5^{(2)} = k_1 u_1\\
+s_1^{(2)} = c_1 \dot u_1\\
+t_4^{(1)} = k_2 (u_1 - u_2)\\
+s_2^{(1)} = c_2 (\dot u_1 - \dot u_2)\\
+t_4^{(2)} = k_2 (u_2 - u_1)\\
+s_2^{(2)} = c_2 (\dot u_2 - \dot u_1)\\
+t_3^{(1)} = k_3 (u_2 - u_3)\\
+s_3^{(1)} = c_3 (\dot u_2 - \dot u_3)\\
+t_3^{(2)} = k_3 (u_3 - u_2)\\
+s_3^{(2)} = c_3 (\dot u_3 - \dot u_2)\\
+t_2^{(1)} = k_3 (u_3 - u_2)\\
+t_2^{(2)} = k_3 (u_2 - u_3)\\
+t_1^{(1)} = k_2 (u_2 - u_1)\\
+t_1^{(2)} = k_2 (u_1 - u_2)\\
+\end{cases}
+\end{equation}
 
+Подставляем \eqref{k_s_2} в \eqref{sist_2}:
 
+\[
+\begin{cases}
+m_1\ddot u_1 + k_2 (u_1 - u_2) + k_2 (u_1 - u_2) + k_1 u_1 + c_1 \dot u_1 + c_2 (\dot u_1 - \dot u_2) = 0\\
+m_2\ddot u_2 + k_2 (u_2 - u_1) + k_3 (u_2 - u_3) + k_2 (u_2 - u_1) + k_3 (u_2 - u_3)  + c_2 (\dot u_2 - \dot u_1) + c_3 (\dot u_2 - \dot u_3) = 0\\
+m_3\ddot u_3 + k_3 (u_3 - u_2) + k_3 (u_3 - u_2) + c_3 (\dot u_3 - \dot u_2) = 0 
+\end{cases}
+\]
+
+В матричном виде:
+\[
+M \ddot q + C \dot q + K q = 0
+\]
+
+\[
+M = \begin{pmatrix}
+m_1 & 0 & 0 \\
+0 & m_2 & 0\\
+0 & 0 & m_3
+\end{pmatrix},\ \ 
+C = \begin{pmatrix}
+c_1 + c_2 & -c_2 & 0  \\
+-c_2 & c_2 + c_3 & -c_3\\
+0 & -c_3 & c_3
+\end{pmatrix},\ \ 
+K = \begin{pmatrix}
+k_1 + 2k_2 & -2k_2 & 0 \\
+-2k_2 & 2k_2 + 2k_3 & -2k_3\\
+0 & -2k_3 & 2k_3
+\end{pmatrix}
+\]
 
 
 
