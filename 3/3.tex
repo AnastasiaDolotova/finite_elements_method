@@ -31,6 +31,7 @@
 		P_A=\{(i,j):a_{ij}\neq0\}
 		\]
 		
+		Возможны следующие случаи:
 		\begin{enumerate}
 			\item Матрица несимметрична и ее портрет несимметричен:
 			\[
@@ -70,21 +71,25 @@
 			\]
 		\end{enumerate}
 		
+Форматы хранения разреженных матриц:
+		
 \underline{CSR} - compressed sparse row
 
 \underline{CSC} - compressed sparse column
 
-\underline{CSLR} - compressed sparse low triangle (почему R)
+\underline{CSLR} - compressed sparse low-triangle row \\
 
+Рассмотрим формат CSR:
 \begin{enumerate}
 	\item aelem - массив, хранящий все $a_{ij}\neq 0$ в строках
-	\item jptr - размерность aelem, указывает $N_j$ элемента $a_{ij}$
-	\item iptr - размерность $n+1$ ($n$ - размерность СЛАУ), хранит число элементов $a_{ij}\neq 0$ в строке
+	\item jptr - массив размерности aelem, указывает $N_j$ элемента $a_{ij}$
+	\item iptr - массив размерности $n+1$ ($n$ - размерность СЛАУ), хранит число элементов $a_{ij}\neq 0$ в строке
 	
 	iptr$[i+1]$ - iptr$[i]$ - число элементов в i-ой строке
+	
 	iptr$[n+1]$ - число элементов в aelem + 1
-	\item adiag - все диагональные элементы
-	\item altr - элементы нижнего треугольника
+	%\item adiag - все диагональные элементы
+	%\item altr - элементы нижнего треугольника
 \end{enumerate}
 
 \underline{Пример:}
@@ -109,11 +114,11 @@ jptr: $\left[\left[1, 4, 5, 7\right], \left[2, 3, 4, 7\right], \left[2, 3, 4\rig
 
 iptr: $\left[1, 5, 9, 12, 17, 21, 22, 26\right]$.
 
-adiag: $\left[9, 11, 10, 9, 12, 8, 8\right]$.
+%adiag: $\left[9, 11, 10, 9, 12, 8, 8\right]$.
 
-altr: $\left[1,2, 1, 2, 1, 1, 2, 2, 3\right]$.
+%altr: $\left[1,2, 1, 2, 1, 1, 2, 2, 3\right]$.
 
-Если матрица несимметричка, то храним ещё и элементы нижнего треугольника, но уже по столбцам (для сохранения структуры).
+Если матрица несимметрична, то храним ещё и элементы нижнего треугольника, но уже по столбцам (для сохранения структуры).
 
 К ЧЕМУ ЭТО
 
