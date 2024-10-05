@@ -69,7 +69,7 @@
 	-\frac{\xi}{l_i} & \frac{\xi}{l_i}
 	\end{bmatrix} d\xi
 	\]
-	
+	\newpage
 	\begin{center}
 		\textbf{Задача теплопроводности в стержне}
 	\end{center}
@@ -122,6 +122,35 @@
 		\item $-K_x \cdot \dfrac{dT}{dx} |_{x=0} = q, \ -K_x \cdot \dfrac{dT}{dx} |_{x=l} = -q$
 		\item $K_x \cdot  \dfrac{dT}{dx} |_{x=0} = -\alpha g (T_0 - T(0)), \ K_x \cdot \dfrac{dT}{dx} |_{x=l} = \alpha g (T_l - T(l))$
 	\end{enumerate}
+	
+	\begin{center}
+	\begin{tikzpicture}
+    % Левый конец стержня
+    \draw[thick] (0.2,0) -- (3.8,0);
+    \draw[thick] (0.2,1) -- (3.8,1);
+    \draw[thick] (0.2,0) -- (0.2,1);
+    \draw[thick, decorate, decoration={zigzag, segment length=3mm, amplitude=1mm}] (3.8,0) -- (3.8,1);
+
+    % Правый конец стержня
+    \draw[thick] (5.2,0) -- (8.8,0);
+    \draw[thick] (5.2,1) -- (8.8,1);
+    \draw[thick] (8.8,0) -- (8.8,1);
+    \draw[thick, decorate, decoration={zigzag, segment length=3mm, amplitude=1mm}] (5.2,0) -- (5.2,1);
+    
+    % Силы
+    \draw[->, thick] (0,0.75) -- (-1,0.75) node[left] { $n$};
+    \draw[->, thick] (-1.2,0.2) -- (-0.2,0.2) node[below left] { $Q$};
+    \draw[->, thick] (9,0.75) -- (10,0.75) node[right] { $n$};
+    \draw[->, thick] (9,0.2) -- (10,0.2) node[below] { $Q$};
+
+    % Обозначения координат
+    \node[below] at (2,-0.2) { $x=0$};
+    \node[below] at (7,-0.2) { $x=l$};
+    
+    \draw[->, thick] (4.2, 0.5) -- (4.9, 0.5);
+
+\end{tikzpicture}
+\end{center}
 	
 	Чтобы определить знак в граничных условиях второго рода нужно смотреть на направление $Q=K_x \cdot  \dfrac{dT}{dx}$.
 	
