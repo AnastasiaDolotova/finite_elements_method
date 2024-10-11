@@ -14,6 +14,7 @@
 \usepackage{listings}
 \usepackage{ amssymb }
 \usepackage{tikz}
+\usetikzlibrary{decorations.markings} % Для корректной работы маркировок и стрелок
 
 \begin{document}
 \section*{11/10}
@@ -31,7 +32,35 @@
 	
 	$\Omega$ -- область, где задано уравнение \eqref{2d_eq}, $\Gamma$ -- граница $\Omega$ .
 	
-	% тут рисунок
+	\begin{tikzpicture}
+    % Оси
+    \draw[->] (-1, 0) -- (3, 0) node[right] {};
+    \draw[->] (0, -1) -- (0, 3) node[above] {};
+    
+    % Область Омега
+    \draw[thick] (0.5, 0.5) .. controls (1.2, 1.8) and (2, 1.5) .. (1.5, 2.5) 
+    .. controls (0.5, 3) and (-0.5, 2) .. (0, 1) -- cycle;
+    \node at (0.8, 1.2) {$\Omega$};
+    
+    % Вектор n
+    \draw[->] (1.5, 2.5) -- (1.9, 2.9);
+    \node at (2, 2.8) {$\vec{n}$};
+    
+    % Граница Gamma1
+    \draw[decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}] 
+        (1.5, 2.5) arc[start angle=40, end angle=210, radius=2cm];
+    \node at (-1, 1) {$\Gamma_1$};
+    
+    % Граница Gamma2
+    \draw[decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}] 
+        (0, 1) arc[start angle=190, end angle=330, radius=1cm];
+    \node at (1, 0) {$\Gamma_2$};
+
+    % Точка O и вектор ksi
+    \node at (-0.2, -0.2) {$O$};
+    \draw[->] (0, 0) -- (0.5, 0.5);
+    \node at (0.3, 0.3) {$\vec{\xi}$};
+\end{tikzpicture}
 	
 	Замкнутый контур $\Gamma$ -- гладкий, за исключением конечного числа угловых точек, в которых внутренний угол $\alpha \in [0; \pi]$.
 	\[\Gamma = \underbrace{\Gamma_1}_{\text{I рода}} \cup \underbrace{\Gamma_2}_{\text{II/III рода}}\]
