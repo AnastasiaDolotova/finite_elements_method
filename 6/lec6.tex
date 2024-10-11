@@ -113,6 +113,30 @@
 	Подставим в \eqref{iint}:
 	\[\iint\limits_{\Omega} \left [ \frac{\partial v}{\partial x} \cdot K \cdot \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \cdot K \cdot \frac{\partial u}{\partial y} + bu \cdot v - f  \cdot v \right ] \, dx \, dy -\]
 	\[-\int \limits_{\Gamma_2} K \cdot v \cdot \left(\frac{\partial u}{\partial x} \cdot l_x + \frac{\partial u}{\partial y} \cdot l_y \right) = 0\]
+
+	\underline{Задача упругости}
+ 	$ u(x, y) $ - перемещения \\
+ 	\[ \varepsilon = [\varepsilon_x \quad \varepsilon_y]^T, \quad \varepsilon_x = - \frac{\partial u}{\partial y},\quad \varepsilon_y = - \frac{\partial u}{\partial y} \]
+	\[ \varepsilon = Lu,\quad L = \left[- \frac{\partial}{\partial x} \quad - \frac{\partial}{\partial y}\right]^T \]
+
+	\[ \sigma = k \partial = kLu \]
+
+	\[ d \Omega = dxdy \]
+
+	\[ \sigma_x dy + \sigma_y dx + (f-bu) dxdy = \left(\sigma_x + \frac{\partial \sigma_x}{\partial x}dx\right) dy + \left(\sigma_y + \frac{\partial \sigma_y}{\partial y}dy\right) dx \]
+
+	\[ \frac{\partial \sigma_x}{\partial x} + \frac{\partial \sigma_y}{\partial y} = f - bu \]
+
+	\[ L_* = \left[\frac{\partial}{\partial x} \quad \frac{\partial}{\partial y}\right],\quad L_* = -L^T \]
+
+	\[ L_* \sigma = L_*kLu = f - bu \]
+
+	\[ \left[\frac{\partial}{\partial x} \quad \frac{\partial}{\partial y}\right] \cdot k \cdot 
+	\begin{bmatrix}
+		-\frac{\partial u}{\partial x}\\
+		- \frac{\partial u}{\partial y}
+	\end{bmatrix}
+ 	= f-bu \]
 	
 	
 	
