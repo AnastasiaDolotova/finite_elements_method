@@ -1,0 +1,108 @@
+\documentclass{bmstu}
+
+\usepackage{mathtools}
+
+\usepackage{physics}
+\usepackage{pdfpages}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{upgreek}
+\usepackage{color, colortbl}
+\usepackage{listings}
+\usepackage{ amssymb }
+\usepackage{tikz}
+
+\begin{document}
+\section*{11/10}
+	
+		\begin{center}
+		\textbf{Двумерные краевые задачи}
+	\end{center}
+	\begin{equation} \label{2d_eq}
+	-\frac{\partial}{\partial x} \left( K \frac{\partial u}{\partial x} \right) -\frac{\partial}{\partial y} \left( K \frac{\partial u}{\partial y} \right) + bu = f
+	\end{equation}
+	
+	$K(x, y),\ b(x, y),\ f(x,y)$ -- заданные (гладкие) функции.
+	
+	$u(x, y)$ -- неизвестная.
+	
+	$\Omega$ -- область, где задано уравнение \eqref{2d_eq}, $\Gamma$ -- граница $\Omega$ .
+	
+	% тут рисунок
+	
+	Замкнутый контур $\Gamma$ -- гладкий, за исключением конечного числа угловых точек, в которых внутренний угол $\alpha \in [0; \pi]$.
+	\[\Gamma = \underbrace{\Gamma_1}_{\text{I рода}} \cup \underbrace{\Gamma_2}_{\text{II/III рода}}\]
+	\begin{center}
+		$u(\xi) = \hat u(\xi)$ -- на $\Gamma_1$ (заданное значение).
+	\end{center}
+	\[K(\xi)\frac{\partial u}{\partial n} = \hat \sigma (\xi) - \text{ на } \Gamma_2\]
+	\[\frac{\partial u}{\partial n} = \frac{\partial u}{\partial x} l_x + \frac{\partial u}{\partial y} l_y,\ 
+	\begin{cases}
+	l_x = \cos(\alpha x) = \cos(\vec x, \vec n),\\
+	l_y = \cos(\alpha y) = \cos(\vec y, \vec n),\\
+	||\vec n|| = 1
+	\end{cases}\]
+
+	% тут рисунок
+	
+	Составим невязку:
+	\[r(x, y) = -\frac{\partial}{\partial x} \left( K \frac{\partial u}{\partial x} \right) -\frac{\partial}{\partial y} \left( K \frac{\partial u}{\partial y} \right) + bu - f = 0\]
+	
+	\[\iint\limits_{\Omega} r(x, y) \cdot v \, dx \, dy = 0,\]
+	
+	где $v(x, y)$ -- пробная (гладкая) функция; на $\Gamma_1$: $v = 0$
+	
+	\begin{equation}\label{iint}
+	\iint\limits_{\Omega} \left [ -\frac{\partial}{\partial x} \left( K \frac{\partial u}{\partial x} \right) -\frac{\partial}{\partial y} \left( K \frac{\partial u}{\partial y} \right) + bu - f \right ] \cdot v \, dx \, dy = 0
+	\end{equation}
+	
+	Рассмотрим первый интеграл:
+	\[-\iint\limits_{\Omega} \frac{\partial}{\partial x} \left( K \frac{\partial u}{\partial x} \right) \cdot v \, dx \, dy\]
+	
+	Формула Гаусса-Остроградского:
+	\[\iint\limits_{\Omega} \frac{\partial}{\partial x} F dx dy = \int \limits_{\Gamma} F \cdot l_x d \xi\]
+	
+	Представим $F$ в виде $F = uv$:
+	\[\frac{\partial}{\partial x} F = \frac{\partial}{\partial x} (uv) = \frac{\partial u}{\partial x} v + u \frac{\partial v}{\partial x}\ \Rightarrow\ 
+	\frac{\partial u}{\partial x} v = \frac{\partial}{\partial x} (uv) - u \frac{\partial v}{\partial x}\]
+	
+	Отсюда:
+	\[\iint\limits_{\Omega} \frac{\partial u}{\partial x} v \, dx \, dy = \iint\limits_{\Omega} \left( \frac{\partial}{\partial x} (uv) - u \frac{\partial v}{\partial x} \right) \, dx \, dy\]
+	
+	И по формуле Гаусса-Остроградского:
+	\[\iint\limits_{\Omega} \frac{\partial u}{\partial x} v \, dx \, dy = \int \limits_{\Gamma} uv \cdot l_x d \xi - \iint\limits_{\Omega} \frac{\partial v}{\partial x} u \, dx \, dy\]
+	
+	Тогда:
+	\[-\iint\limits_{\Omega} \frac{\partial}{\partial x} \left( K \frac{\partial u}{\partial x} \right) \cdot v \, dx \, dy = 
+	-\int \limits_{\Gamma} K \cdot \frac{\partial u}{\partial x} \cdot v \cdot l_x d \xi + \iint\limits_{\Omega} \frac{\partial v}{\partial x} \left(  K \cdot \frac{\partial u}{\partial x} \right) \, dx \, dy\]
+	\[-\iint\limits_{\Omega} \frac{\partial}{\partial y} \left( K \frac{\partial u}{\partial y} \right) \cdot v \, dx \, dy = 
+	-\int \limits_{\Gamma} K \cdot \frac{\partial u}{\partial y} \cdot v \cdot l_y d \xi + \iint\limits_{\Omega} \frac{\partial v}{\partial y} \left(  K \cdot \frac{\partial u}{\partial y} \right) \, dx \, dy\]
+	
+	Подставим в \eqref{iint}:
+	\[\iint\limits_{\Omega} \left [ \frac{\partial v}{\partial x} \cdot K \cdot \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \cdot K \cdot \frac{\partial u}{\partial y} + bu \cdot v - f  \cdot v \right ] \, dx \, dy -\]
+	\[-\int \limits_{\Gamma_2} K \cdot v \cdot \left(\frac{\partial u}{\partial x} \cdot l_x + \frac{\partial u}{\partial y} \cdot l_y \right) = 0\]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	   \end{document}
