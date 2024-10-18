@@ -1,0 +1,135 @@
+\documentclass{bmstu}
+
+
+\usepackage{physics}
+\usepackage{pdfpages}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{upgreek}
+\usepackage{color, colortbl}
+\usepackage{listings}
+\usepackage{ amssymb }
+\usepackage{tikz}
+
+\graphicspath{
+	{graphics/}
+}
+
+\begin{document}
+	
+	\section*{18/10}
+	\begin{center}
+		\textbf{Симплексный треугольный КЭ}
+	\end{center}
+	\[
+	u=\alpha_1+\alpha_2 x +\alpha_3 y
+	\]
+	\[
+	\begin{cases}
+		u_i=\alpha_1+\alpha_2 x_i +\alpha_3 y_i \\
+		u_j=\alpha_1+\alpha_2 x_j +\alpha_3 y_j \\
+		u_k=\alpha_1+\alpha_2 x_k +\alpha_3 y_k 
+	\end{cases} \quad \Rightarrow \quad \Delta = \begin{vmatrix}
+	1&x_i&y_i\\
+	1&x_j&y_j\\
+	1&x_k&y_k
+	\end{vmatrix} = 2S_{\Delta}
+	\]
+	\[
+	\Delta_1=\begin{vmatrix}
+	u_i&x_i&y_i\\
+	u_j&x_j&y_j\\
+	u_k&x_k&y_k
+	\end{vmatrix}
+	 = u_i(x_jy_k-x_ky_j)+u_j(x_ky_i-x_iy_k)+u_k(x_iy_j-x_jy_i)
+	\]
+	\[
+	\Delta_2=\begin{vmatrix}
+		1&u_i&y_i\\
+		1&u_j&y_j\\
+		1&u_k&y_k
+	\end{vmatrix}
+	= u_i(y_j-y_k)+u_j(y_i-y_k)+u_k(y_i-y_j)
+	\]
+	\[
+	\Delta_2=\begin{vmatrix}
+		1&x_i&u_i\\
+		1&x_j&u_j\\
+		1&x_k&u_k
+	\end{vmatrix}
+	= u_i(x_k-x_j)+u_j(x_i-x_k)+u_k(x_j-x_i)
+	\]
+	\[
+	\alpha_1 = \frac{\Delta_1}{\Delta}, \quad \alpha_2 = \frac{\Delta_2}{\Delta}, \quad \alpha_3 = \frac{\Delta_3}{\Delta}
+	\]
+	\[
+	u=\frac{1}{\Delta}(a_iu_i+a_ju_j+a_ku_k+b_iu_ix+b_ju_jx+b_ku_kx+c_iu_iy+c_ju_jy+c_ku_ky)=
+	\]
+	\[
+	=\frac{1}{\Delta}\left[(a_i+b_ix+c_iy)u_i+(a_j+b_jx+c_jy)u_j+(a_k+b_kx+c_ky)u_i)\right]=
+	\]
+	\[
+	=N_iu_i+N_ju_j+N_ku_k=\left[N\right]\left\{\text{Ф}\right\}
+	\]
+	\[
+	\begin{cases}
+		N_i = \frac{1}{\Delta}(a_i+b_ix+c_iy) \\
+		N_j = \frac{1}{\Delta}(a_j+b_jx+c_jy) \\
+		N_k = \frac{1}{\Delta}(a_k+b_kx+c_ky) 
+	\end{cases} - \text{ функции формы, } u=\left[N\right]\left\{\text{Ф}\right\}
+	\]
+	
+	Возвращаемся к уравнению:
+	\[
+	\iint\limits_{\Omega} (\frac{\partial v}{\partial x} \cdot K \cdot  \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \cdot K \cdot  \frac{\partial u}{\partial y} + buv-fv)dxdy-\int\limits_{\text{Г}} (K \cdot  \frac{\partial u}{\partial x} \cdot l_x + K \cdot  \frac{\partial u}{\partial y} \cdot l_y)vd\xi = 0
+	\]
+	\[
+	v=N\delta\text{Ф}, \quad \delta\text{Ф}=\left[v_i, v_j, v_k\right]^T
+	\]
+	\[
+	\begin{bmatrix}
+		\dfrac{\partial u}{\partial x} \\ \\ \dfrac{\partial u}{\partial y} 
+	\end{bmatrix} = \begin{bmatrix}
+	\dfrac{\partial \left[N\right]}{\partial x} \\  \\ \dfrac{\partial \left[N\right] }{\partial y} 
+	\end{bmatrix} \left\{\text{Ф}\right\} = \begin{bmatrix}
+	\dfrac{\partial N_i}{\partial x} & \dfrac{\partial N_j}{\partial x} & \dfrac{\partial N_k}{\partial x} \\ & & \\ \dfrac{\partial N_i}{\partial y} & \dfrac{\partial N_j}{\partial y} & \dfrac{\partial N_k}{\partial y}
+	\end{bmatrix} \left\{\text{Ф}\right\} = \dfrac{1}{\Delta} \begin{bmatrix}
+	b_i & b_ j & b_k \\ c_i & c_j & c_k
+	\end{bmatrix} \left\{\text{Ф}\right\} = \left[B\right] \left\{\text{Ф}\right\}
+	\]
+	\[
+	\begin{bmatrix}
+		\dfrac{\partial v}{\partial x} \\ \\	\dfrac{\partial v}{\partial y}
+	\end{bmatrix} = \left[B\right] \left\{\delta\text{Ф}\right\} \qquad D=\begin{bmatrix}
+	K_x & 0 \\ 0 & K_y
+	\end{bmatrix}
+	\]
+	\[
+	\int\limits_{\Omega} \left(\frac{\partial v}{\partial x} \cdot K_x \cdot  \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \cdot K_y \cdot  \frac{\partial u}{\partial y}\right)\ dxdy = \int\limits_{\Omega} (B\delta\text{Ф})^TDB\text{Ф}\ dxdy=
+	\] 
+	\[
+	=\left\{ \delta \text{Ф} \right\}^T \int\limits_{\Omega} B^T D B \ dxdy \ \left\{ \text{Ф} \right\}
+	\]
+	\[
+	\int\limits_{\Omega}  buv \ dxdy = \int\limits_{\Omega}  (N\delta \text{Ф}) ^ T bN \text{Ф} \ dxdy = \left\{ \delta \text{Ф} \right\}^T \int\limits_{\Omega} bN^T D N \ dxdy \ \left\{ \text{Ф} \right\}
+	\]
+	\[
+	\int\limits_{\Omega}fv\ dxdy = 
+	\]
+	
+	Считаем, что $K_x, K_y - const$:
+	\[
+	= \dfrac{S_1}{(2S_1)^2} \left[K_x \begin{pmatrix}
+		b_ib_i & b_ib_j & b_ib_k \\
+		b_ib_j & b_jb_j & b_jb_k \\
+		b_ib_k & b_jb_k & b_kb_k \\
+	\end{pmatrix}+ K_y \begin{pmatrix}
+	c_ic_i & c_ic_j & c_ic_k \\
+	c_ic_j & c_jc_j & c_jc_k \\
+	c_ic_k & c_jc_k & c_kc_k \\
+	\end{pmatrix} \right] 
+	\]
+\end{document}
