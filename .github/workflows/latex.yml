@@ -1,0 +1,37 @@
+name: Build LaTeX PDF
+
+on:
+  push:
+    branches:
+      - dev_lections
+  release:
+    types: [published]
+
+permissions:
+          contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
+
+      - name: Compile LaTeX to PDF
+        run: |
+          pdflatex main.tex
+          pdflatex main.tex  # Запустите дважды для правильного обновления ссылок
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: pdf
+          files: main.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
