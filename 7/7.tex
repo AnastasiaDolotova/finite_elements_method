@@ -14,7 +14,7 @@
 \usepackage{ amssymb }
 \usepackage{ wasysym }
 \usepackage{tikz}
-\usepackage{color}
+\usetikzlibrary{calc}
 
 \graphicspath{
 	{graphics/}
@@ -246,20 +246,79 @@
 		\draw[->][thin] (2.75, 1.95) -- (2.5,1.6) node[above] {\footnotesize $L_i$};
 	\end{tikzpicture}
 	\end{center}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	\[\begin{cases}
+	0 \leq L_i \leq 1;\\
+	0 \leq L_j \leq 1;\\
+	0 \leq L_k \leq 1.
+	\end{cases}\]
+
+	\begin{minipage}{0.45\textwidth}
+	\begin{tikzpicture}
+    		\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+    		\draw[->] (0,-0.2) -- (0,3) node[above] {$y$};
+   		\draw[blue, thick] (1,0.5) -- (4,1) -- (2,2.5) -- cycle;
+		{\footnotesize
+   	 	\node at (1,0.5) [below left] {$i$};
+   		\node at (4.2,1) [right] {$j$};
+    		\node at (2,2.5) [above] {$k$};
+		}
+		
+		\draw[->][thin, red] (2.3, 0.72) -- (2.21,1.25) node[right] {\footnotesize $L_k$};
+		\draw[->][thin, red] (1.6, 1.7) -- (2.15,1.35) node[above] {\footnotesize $L_j$};
+		\draw[->][thin, red] (2.75, 1.95) -- (2.5,1.6) node[above] {\footnotesize $L_i$};
+		
+		\fill (2.18,1.3) circle (1.5pt) node[left] {\footnotesize$B$};
+		
+		\draw (4,1) -- (4.25, 0.8125);
+		\draw (2.18,1.3) -- (3.75, 0.1225);
+		\draw[<->] (4.24, 0.8126) -- (3.74, 0.1226);
+		\node at (4.2, 0.3) {\footnotesize$s$};
+		
+		\draw (2,2.5) -- (2.3, 3);
+		\draw (4,1) -- (4.3, 1.5);
+		\draw[<->] (2.25, 2.9) -- (4.25, 1.4);
+		\node at (3.25, 2.4) {\footnotesize$b$};
+		
+		\draw (2,2.5) -- (1.5, 2.8);
+		\draw (1,0.5) -- (0.5, 0.8);
+		\draw[<->] (1.6, 2.75) -- (0.6, 0.75);
+		\node at (1, 1.92) {\footnotesize$h$};
+	\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+	\begin{tikzpicture}
+    		\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+    		\draw[->] (0,-0.2) -- (0,3) node[above] {$y$};
+   		\draw[blue, thick] (1,0.5) -- (4,1) -- (2,2.5) -- cycle;
+		{\footnotesize
+   	 	\node at (1,0.5) [below left] {$i$};
+   		\node at (4.2,1) [right] {$j$};
+    		\node at (2,2.5) [above] {$k$};
+		}
+		
+		\fill (2.18,1.3) circle (1.5pt);
+		
+		\draw (1,0.5) -- (2.18,1.3);
+		\draw (4,1) -- (2.18,1.3);
+		\draw (2,2.5) -- (2.18,1.3);
+		
+		\node at (2.7, 1.5) {\footnotesize$A_i$};
+		\node at (1.8, 1.5) {\footnotesize$A_j$};
+		\node at (2.3, 1) {\footnotesize$A_k$};
+
+	\end{tikzpicture}
+\end{minipage}
+\[\begin{cases}
+S_{\triangle} = \frac{1}{2} bh,\\
+S_{A_i} =  \frac{1}{2} bs
+\end{cases}
+\Rightarrow
+L_i = \frac{S_{A_i}}{S_{\triangle}} = \frac{s}{h}
+\]
+\[L_j = \frac{S_{A_j}}{S_{\triangle}},\ \ L_k = \frac{S_{A_k}}{S_{\triangle}}\]
+\[L_i + L_j + L_k = \frac{S_{A_i} + S_{A_j} + S_{A_k}}{S_{\triangle}} = 1\]
+\[N_i = L_i,\ N_j = L_j,\ N_k = L_k\]
 	
 	
 	
