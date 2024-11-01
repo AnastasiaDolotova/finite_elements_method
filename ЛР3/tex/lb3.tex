@@ -23,59 +23,7 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{ wasysym }
 \usepackage{listings}
 
-\begin{document}
-	% ТИТУЛЬНИК %
-	\pagestyle{empty} 
-	\centerline{\large Министерство науки и высшего образования}	
-	\centerline{\large Федеральное государственное бюджетное образовательное}
-	\centerline{\large учреждение высшего образования}
-	\centerline{\large <<Московский государственный технический университет}
-	\centerline{\large имени Н.Э. Баумана}
-	\centerline{\large (национальный исследовательский университет)>>}
-	\centerline{\large (МГТУ им. Н.Э. Баумана)}
-	\hrule
-	\vspace{0.5cm}
-	\begin{figure}[h]
-		\center
-		\includegraphics[height=0.35\linewidth]{bmstu-logo.pdf}
-	\end{figure}
-	\begin{center}
-		\large	
-		\begin{tabular}{c}
-			Факультет <<Фундаментальные науки>> \\
-			Кафедра <<Математика и компьютерные науки (ФН11)>>		
-		\end{tabular}
-	\end{center}
-	\vspace{0.5cm}
-	\begin{center}
-		\LARGE \bf	
-		\begin{tabular}{c}
-			\textsc{Основы метода} \\
-			\textsc{ конечных элементов} \\
-			Лабораторная работа № 3 
-		\end{tabular}
-	\end{center}
-	\vspace{0.5cm}
-	\begin{center}
-		\large	
-		\begin{tabular}{c}
-			Полетаева Евгения -- ФН11-71Б \\
-			Вариант 15 \\ \\
-			Преподаватель: Захарова Ю.В.
-		\end{tabular}
-	\end{center}
-	\vfill
-	\begin{center}
-		\large	
-		\begin{tabular}{c}
-			Москва, 
-			2024 г.
-		\end{tabular}
-	\end{center}
-	% ТИТУЛЬНИК %
-	\newpage
-	\pagestyle{plain}
-	
+\begin{document}	
 	\begin{center}
 		\textit{\textbf{Задача }}
 	\end{center}
@@ -259,21 +207,22 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 	k2 = -(kx * S) / l + math.pi * R * alpha * l / 3
 	p1 = math.pi * R * alpha * Tg * l
 	K = np.array(
-	[
-	[k1, k2, 0, 0],
-	[k2, 2 * k1, k2, 0],
-	[0, k2, 2 * k1, k2],
-	[0, 0, k2, k1 + S * alpha],
-	]
+		[
+		[k1, k2, 0, 0],
+		[k2, 2 * k1, k2, 0],
+		[0, k2, 2 * k1, k2],
+		[0, 0, k2, k1 + S * alpha],
+		]
 	)
 	P = np.array([q * S + p1, 2 * p1, 2 * p1, p1 + alpha * Tg * S])
 	L1 = np.linalg.cholesky(K)
 	y = np.linalg.solve(L1, P)
 	T = np.linalg.solve(L1.T, y)
+	print(T)
 	\end{lstlisting}
 	
 	\newpage
-	Для пяти (матрица $K_1 = const$, матрица $K_2$ зависит от ГУ):
+	Код для пяти элементов (матрица $K_1 = const$, матрица $K_2$ зависит от ГУ):
 	\begin{lstlisting}
 	n = 5
 	l = L / n
@@ -284,27 +233,28 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 	K1[i, i + 1] = -k1
 	K1[i + 1, i] = -k1
 	K1[i + 1, i + 1] += k1
-	np.round(K1, 3)
+	print(np.round(K1, 3))
 	k2 = math.pi * R * alpha * l / 3
 	K2 = np.zeros((n + 1, n + 1))
 	for i in range(n):
-	K2[i, i] += k2 * 2
-	K2[i, i + 1] = k2
-	K2[i + 1, i] = k2
-	K2[i + 1, i + 1] += k2 * 2
-	K2[-1, -1] += S * alpha
-	np.round(K2, 3)
+		K2[i, i] += k2 * 2
+		K2[i, i + 1] = k2
+		K2[i + 1, i] = k2
+		K2[i + 1, i + 1] += k2 * 2
+		K2[-1, -1] += S * alpha
+	print(np.round(K2, 3))
 	K = K1 + K2
-	np.round(K, 3)
+	print(np.round(K, 3))
 	p1 = math.pi * R * alpha * Tg * l
 	P = np.zeros(n + 1)
 	P[0] = q * S + p1
 	for i in range(1, n):
-	P[i] = 2 + p1
+		P[i] = 2 + p1
 	P[-1] = p1 + alpha * Tg * S
-	np.round(P, 3)
+	print(np.round(P, 3))
 	L1 = np.linalg.cholesky(K)
 	y = np.linalg.solve(L1, P)
 	T = np.linalg.solve(L1.T, y)
+	print(T)
 	\end{lstlisting}
 \end{document}
