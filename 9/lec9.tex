@@ -28,6 +28,9 @@
 \underline{Одномерные квадратичные и кубические функции}
 \end{center}
 \[
+K_x \frac{\partial^2 T}{\partial x^2} + f = 0
+\]
+\[
 \varphi = \alpha_1 + \alpha_2x, \ \dim L = 1, n = 2 \text{ -- симплекс элементы.}
 \]
 
@@ -139,21 +142,20 @@ N_i^2 & N_iN_j & N_iN_k \\
 N_iN_j & N_j^2 & N_jN_k \\
 N_iN_k & N_jN_k & N_k^2 \\
 \end{bmatrix} dx = \]
-\[= \frac{\alpha_g З L}{30} \cdot \begin{bmatrix}
+\[= \frac{\alpha_g P L}{30} \cdot \begin{bmatrix}
 4 & 2 & -1 \\
 2 & 16 & 2 \\
 -1 & 2 & 4 \\
 \end{bmatrix}\]
 
+\begin{center}
 \begin{tikzpicture}
-    % Рисуем основу цилиндра
-    \fill[gray!50] (2,0) circle (0.7 and 0.5); % закрашенная правая сторона
-    \draw (-1,0) ellipse (0.7 and 0.5); % передняя окружность
-    \draw (2,0) ellipse (0.7 and 0.5); % задняя окружность
+    \fill[gray!50] (2,0) circle (0.7 and 0.5); 
+    \draw (-1,0) ellipse (0.7 and 0.5); 
+    \draw (2,0) ellipse (0.7 and 0.5); 
 
-    % Рисуем боковые линии
-    \draw (-1,0.5) -- (2,0.5); % нижняя боковая линия
-    \draw (-1,-0.5) -- (2,-0.5); % верхняя боковая линия
+    \draw (-1,0.5) -- (2,0.5); 
+    \draw (-1,-0.5) -- (2,-0.5); 
     
     \node at (-1, 0.9) {$i$};
     \node at (0.5, 0.9) {$j$};
@@ -162,19 +164,179 @@ N_iN_k & N_jN_k & N_k^2 \\
     \draw[<-] (-1.2,0) -- (-2.5,0) node[left] {$q$};
     \draw[->] (2,0) -- (3.3,0) node[right] {$T_g,\ \alpha_g$};
 \end{tikzpicture}
+\end{center}
 
+Для узла $k$:
+\[\alpha_g \int \limits_S N^T N dS = \alpha_g S_k 
+\cdot \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix},\]
 
+где $S_k$ -- площадь сечения для $k$-ого узла.
 
+Для всей боковой поверхности:
+\[\alpha_g T_g \int \limits_S N^T dS = \alpha_g T_g P \cdot \int \limits_0^L 
+\begin{bmatrix}
+N_i \\
+N_j \\
+N_k \\
+\end{bmatrix} dx = 
+\frac{\alpha_g T_g P L}{6}
+\begin{bmatrix}
+1 \\
+4 \\
+1 \\
+\end{bmatrix} \]
 
+Для узла $k$:
+\[\alpha_g T_g \int \limits_S N^T dS = \alpha_g T_g S_k 
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix} 
+\]
 
+Для узла $i$:
+\[
+\int \limits_S q N^T dS = qS
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\end{bmatrix} 
+\]
+\[
+\int \limits_V f \cdot N^T dV = S \cdot f \int \limits_0^L N^T dx = \frac{SfL}{6} \cdot
+\begin{bmatrix}
+1 \\
+4 \\
+1 \\
+\end{bmatrix}
+\]
 
+\begin{center}
+\underline{Естественная система координат}
+\end{center}
 
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (5,0) node[below right] {$x$};
+\node at (0, -0.4) {0};
+\node at (2, -0.8) {$\displaystyle \frac{L}{2}$};
+\node at (4, -0.4) {$L$};
+\draw (0, 0.1) -- (0, -0.1);
+\draw (2, 0.1) -- (2, -0.1);
+\draw (4, 0.1) -- (4, -0.1);
 
+\draw[->] (0,-3) -- (5,-3) node[below right] {$\xi$};
+\node at (0, -3.4) {-1};
+\node at (2, -3.4) {0};
+\node at (4, -3.4) {1};
+\node[red] at (0, -2.6) {\footnotesize $f_i = 1 + \xi$};
+\node[red] at (2, -2.6) {\footnotesize$f_j = \xi$};
+\node[red] at (4, -2.6) {\footnotesize$f_k = 1 - \xi$};
+\draw (0, -2.9) -- (0, -3.1);
+\draw (2, -2.9) -- (2, -3.1);
+\draw (4, -2.9) -- (4, -3.1);
+\end{tikzpicture}
+\end{center}
+\[-1 \leq \xi \leq 1,\ x = f(\xi) \Leftrightarrow \xi = \varphi (x)\]
+\[\begin{cases}
+N_i =\displaystyle \xi (1 - \xi) \cdot \frac{-1}{2} = -\frac{\xi (1 - \xi)}{2},\\
+N_j = (1 - \xi)(1 + \xi),\\
+N_k =\displaystyle \frac{\xi(1 + \xi)}{2}
+\end{cases}\]
+\[\varphi = N_i \Phi_i + N_j \Phi_j+ N_k\Phi_k\]
+\[x = N_i x_i + N_j x_j+ N_k x_k  \rightarrow x = f(\xi)\]
+\[B = \frac{d [N]}{dx};\ \frac{dN_{\beta}}{d\xi} = \frac{dN_{\beta}}{dx} \underbrace{\frac{dx}{d\xi}}_{J},\ J^{-1} =  \frac{1}{\frac{dx}{d\xi}},\ \beta = i, j, k\]
+\[\frac{dN_{\beta}}{dx} = J^{-1} \frac{dN_{\beta}}{d\xi}\]
+\[J = \frac{dx}{d\xi} = \frac{dN_{i}}{d\xi} x_i + \frac{dN_{j}}{d\xi} x_j + \frac{dN_{k}}{d\xi} x_k \neq \text{const}\]
 
+\begin{center}
+\begin{tabular}{cc}
+\begin{tikzpicture}[scale=0.7]
+    \draw (-2, 2) circle (0.7cm);
+    \node at (-2, 2) {1};
+    \draw (0,0) circle (1cm);
+    \draw (6,0) circle (1cm);
+    
+    \fill (0,0) circle(2pt);
+    \fill (3,0.32) circle(2pt);
+    \fill (6,-0.05) circle(2pt);
+    
+    \draw(0,1) .. controls (2,1.5) and (4, 1.5) .. (6,1); 
+    \draw(0,-1) .. controls (2,-0.5) and (4, -0.5) .. (6,-1); 
+    \draw[->] (0, 0) .. controls (2, 0.5) and (4, 0.5) .. (8,-0.5) node[right] {$\xi$}; 
+    
+    \draw[->] (0,-2) -- (8,-2) node[right] {$x$};
+\end{tikzpicture}
+& 
+$\begin{cases}
+x = N_i x_i + N_j x_j+ N_k x_k\\
+\varphi = N_i \Phi_i + N_j \Phi_j+ N_k\Phi_k
+\end{cases}$ \\
+Криволинейный стержень & \\
+\begin{tikzpicture}[scale=0.7]
+    \draw (-2, 2) circle (0.7cm);
+    \node at (-2, 2) {2};
+    \draw (0,0) circle (1cm);
+    \draw (6,0) circle (1cm);
+    
+    \draw (0,1) -- (6,1);
+    \draw (0,-1) -- (6,-1);
+    
+    \fill (0,0) circle(2pt);
+    \fill (6,0) circle(2pt);
+    
+    \node[red] at (0, 1.5) {$1 + \xi$};
+    \node[red] at (6, 1.5) {$1 - \xi$};
+    
+    \draw[->] (7,0.5) -- (8.5, 0.5) node[right] {$x$};
+    \draw[->] (7,-0.5) -- (8.5, -0.5) node[right] {$\xi$};
+    
+\end{tikzpicture}
+&
+$\begin{cases}
+x = \tilde{N_i} x_i + \tilde{N_k} x_k\\
+\tilde{N_i} = \displaystyle \frac{1}{2} (1 - \xi),\ \tilde{N_k} = \displaystyle \frac{1}{2} (1 + \xi)\\
+\varphi = N_i \Phi_i + N_j \Phi_j+ N_k\Phi_k
+\end{cases}$ \\
+Линейный стержень  & (если в задании нужно вычислить \\
+(задаем через две точки)  & что-то в середине, то используем \\
+& квадратичные функции формы) \\
 
+\begin{tikzpicture}[scale=0.7]
+    \draw (-4, 2) circle (0.7cm);
+    \node at (-4, 2) {3};
+    \draw (0,0) circle (1cm);
+    \draw (6,0) circle (1cm);
+    
+    \fill (0,0) circle(2pt);
+    \fill (3,0.32) circle(2pt);
+    \fill (6,-0.05) circle(2pt);
+    
+    \draw(0,1) .. controls (2,1.5) and (4, 1.5) .. (6,1); 
+    \draw(0,-1) .. controls (2,-0.5) and (4, -0.5) .. (6,-1); 
+    \end{tikzpicture}
+& 
+$\begin{cases}
+x = N_i x_i + N_j x_j+ N_k x_k\\
+\varphi = \tilde{N_i} \Phi_i + \tilde{N_k}\Phi_k
+\end{cases}$ \\
+Криволинейный элемент & (достаточно рассмотреть только \\
+& на концах элемента) \\
+\end{tabular}
+\end{center}
 
-
-
+Пусть $A$ -- количество узлов для задания формы элемента ($x = f(\xi)$), $B$ -- количество узлов для задания интерполяционного полинома ($\varphi$).
+\begin{enumerate}
+\item Если $A = B$, такой конечный элемент называется \textit{изопараметрический}.
+\item Если $A < B$, такой конечный элемент называется \textit{субпараметрический}.
+\item Если $A > B$, такой конечный элемент называется \textit{суперпараметрический}.
+\end{enumerate}
 
 
 
