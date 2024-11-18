@@ -56,6 +56,7 @@
             xlabel={$x$},
             ylabel={$y$}, 
             ymin=-1, ymax=1,
+            samples=300,
             xmin=0, xmax=2*pi,
             xtick={0, pi/2, pi, 3*pi/2, 2*pi},
             xticklabels={0,,,$l$,}, 
@@ -82,6 +83,7 @@
             ylabel={$y$}, 
             ymin=-1, ymax=1,
             xmin=0, xmax=2*pi,
+            samples=300,
             xtick={0, pi/2, pi, 3*pi/2, 2*pi},
             xticklabels={0,,,$l$,}, 
             ytick={0}, 
@@ -91,7 +93,7 @@
             every axis line/.append style={->, thick}, 
             tick label style={font=\footnotesize} 
         ]
-        \addplot[green, thick] {sin(deg(x)) * (sin(deg(x))/2)};
+        \addplot[blue, thick] {sin(deg(x)) * (sin(deg(x))/2)};
         \end{axis}
     \end{tikzpicture}
 \end{figure}
