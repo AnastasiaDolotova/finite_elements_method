@@ -27,8 +27,23 @@
 	\textbf{Мультиплекс-элементы}
 	\end{center}
 	
-	\begin{enumerate}
-		\item $\varphi$ - аппроксимирующая функция должна быть непрерывной между элементами. 
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (0,0) -- (6,0) node[below right] {$x$};
+			\draw[->] (0,0) -- (0,5) node[below left] {$y$};
+			\draw (1,1) rectangle ++(4,3);
+			\filldraw (1,1) circle (1pt) node[left] {4};
+			\filldraw (1,2) circle (1pt) node[left] {3};
+			\filldraw (1,3) circle (1pt) node[left] {2};
+			\filldraw (1,4) circle (1pt) node[left] {1};
+			\filldraw (5,1) circle (1pt) node[right] {8};
+			\filldraw (5,2) circle (1pt) node[right] {7};
+			\filldraw (5,3) circle (1pt) node[right] {6};
+			\filldraw (5,4) circle (1pt) node[right] {5};
+		\end{tikzpicture}
+	\end{center}
+
+		$\varphi$ - аппроксимирующая функция должна быть непрерывной между элементами. 
 		
 		Предположим, что вдоль верхней и нижней сторон функция меняется по линейному закону, а вдоль вертикальных сторон, например, по кубическому.
 		\[
@@ -63,14 +78,48 @@
 		
 		\underline{Самая большая сложность - в составлении $C^{-1}$.}
 		
+		\newpage
 		\begin{center}
 			\textbf{Серендипово семейство}
+		\end{center}
+
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[->] (0,0) -- (6,0) node[below right] {$x$};
+				\draw[->] (0,0) -- (0,5) node[below left] {$y$};
+				\draw (1,1) rectangle ++(4,3);
+				\filldraw (1,1) circle (1pt) node[left] {1};
+				\filldraw (1,4) circle (1pt) node[left] {4};
+				\filldraw (5,1) circle (1pt) node[right] {2};
+				\filldraw (5,4) circle (1pt) node[right] {3};
+			\end{tikzpicture}
 		\end{center}
 		
 		Линейная аппроксимация: 
 		\[
 		\varphi = \alpha_1 +\alpha_2 x+\alpha_3 y +\alpha_4 xy
 		\]
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[->] (0,2.5) -- (6,2.5) node[below right] {$x$};
+				\draw[->] (3,0) -- (3,5) node[left] {$y$};
+				\draw (1,1) rectangle ++(4,3);
+				\filldraw (1,1) circle (1pt) node[above left] {1} node[below] {$(-b, -a)$};
+				\filldraw (1,4) circle (1pt) node[below left] {4} node[above] {$(-b, a)$};
+				\filldraw (5,1) circle (1pt) node[above right] {2} node[below] {$(b, -a)$};
+				\filldraw (5,4) circle (1pt) node[below right] {3} node[above] {$(b, a)$};
+			\end{tikzpicture}
+		\end{center}
+		\[
+			\begin{cases}
+				\Phi_1 = \alpha_1 + \alpha_2 \cdot (-b) + \alpha_3 \cdot (-a) + \alpha_4 \cdot ab,\\
+				\Phi_2 = \alpha_1 + \alpha_2 \cdot (b) + \alpha_3 \cdot (-a) + \alpha_4 \cdot (-ab),\\
+				\Phi_3 = \alpha_1 + \alpha_2 \cdot (b) + \alpha_3 \cdot (a) + \alpha_4 \cdot ab,\\
+				\Phi_4 = \alpha_1 + \alpha_2 \cdot (-b) + \alpha_3 \cdot (a) + \alpha_4 \cdot (-ab),\\
+			\end{cases}
+		\]
+
+		В матричном виде:
 		\[
 		\begin{bmatrix}
 			1 & -b & -a & ab \\
@@ -102,7 +151,90 @@
 	\end{bmatrix}
 		\]
 		
-	Этот метод не рационален. Поэтому функции формы будем искать так:
-	
-	\end{enumerate}
+	Этот метод не рационален. Поэтому функции формы будем искать с помощью их свойств:
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (0,2.5) -- (6,2.5) node[below right] {$x$};
+			\draw[->] (3,0) -- (3,5) node[left] {$y$};
+			\draw (1,1) rectangle ++(4,3);
+			\filldraw (1,1) circle (1pt) node[above left] {1};
+			\filldraw (1,4) circle (1pt) node[below left] {4};
+			\filldraw (5,1) circle (1pt) node[above right] {2};
+			\filldraw (5,4) circle (1pt) node[below right] {3};
+			\draw[red, dashed] (-0.5,1) -- (6.5,1) node[right] {$f_1 = (a + y)$};
+			\draw[blue, dashed] (-0.5,4) -- (6.5,4) node[right] {$f_2 = (a - y)$};
+			\draw[teal, dashed] (1,5.5) -- (1,-0.5) node[below] {$f_3 = (b + x)$};
+			\draw[orange, dashed] (5,5.5) -- (5,-0.5) node[below] {$f_4 = (b - x)$};
+			\node at (4.75, 3.25) {\footnotesize $a$};
+			\node at (4.75, 1.75) {\footnotesize $a$};
+			\node at (2, 0.75) {\footnotesize $b$};
+			\node at (4, 0.75) {\footnotesize $b$};
+		\end{tikzpicture}
+	\end{center}
+	\[
+		\begin{cases}
+			N_1 = \displaystyle \frac{f_2 \cdot f_4}{f_2 \cdot f_4 |_{x=-b,\ y = -a}} = \frac{1}{4ab} (a-y) (b-x)\\
+			N_2 = \frac{1}{4ab}(b+x)(a-y)\\
+			N_3 = \frac{1}{4ab}(b+x)(a+y)\\
+			N_4 = \frac{1}{4ab}(b-x)(a+y)
+		\end{cases}
+	\]
+	\[
+		\frac{\partial \varphi}{\partial x} = \alpha_2 + \alpha_4 y,\ 
+		\frac{\partial \varphi}{\partial y} = \alpha_3 + \alpha_4 x
+	\]
+
+	\begin{center}
+		\textbf{Естественная криволинейная система координат}
+	\end{center}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (0,2.5) -- (6,2.5) node[below right] {$\xi$};
+			\draw[->] (3,0) -- (3,5) node[left] {$\eta$};
+			\draw (1,1) rectangle ++(4,3);
+			\filldraw (1,1) circle (1pt) node[above left] {1};
+			\filldraw (1,4) circle (1pt) node[below left] {4};
+			\filldraw (5,1) circle (1pt) node[above right] {2};
+			\filldraw (5,4) circle (1pt) node[below right] {3};
+			\draw[red, dashed] (-0.5,1) -- (6.5,1) node[right] {$f_1 = (1 + \eta)$};
+			\draw[blue, dashed] (-0.5,4) -- (6.5,4) node[right] {$f_2 = (1 - \eta)$};
+			\draw[teal, dashed] (1,5.5) -- (1,-0.5) node[below] {$f_3 = (1 + \xi)$};
+			\draw[orange, dashed] (5,5.5) -- (5,-0.5) node[below] {$f_4 = (1 - \xi)$};
+			\node at (4.75, 3.25) {\footnotesize $1$};
+			\node at (4.75, 1.75) {\footnotesize $1$};
+			\node at (2, 0.75) {\footnotesize $1$};
+			\node at (4, 0.75) {\footnotesize $1$};
+		\end{tikzpicture}
+	\end{center}
+	\[
+		\xi = \frac{x}{b},\ -1\leq \xi \leq 1,\ \ \eta = \frac{y}{a},\ -1\leq \eta \leq 1
+	\]
+	\[
+		\begin{cases}
+			N_1 = \frac{1}{4} (1-\xi) (1-\eta)\\
+			N_2 = \frac{1}{4} (1+\xi)(1-\eta)\\
+			N_3 = \frac{1}{4} (1+\xi)(1+\eta)\\
+			N_4 = \frac{1}{4} (1-\xi)(1+\eta)
+		\end{cases}
+	\]
+
+	В случае четырехугольного элемента более сложной формы естественную систему координат можно задать следующим образом:
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->, dashed] (-1,2.5) -- (7,2.5) node[below right] {$\xi$};
+			\draw[->, dashed] (3,0) -- (3,5) node[left] {$\eta$};
+			\draw (1,1) -- (5,1);
+			\draw (-0.5,4) -- (6.5,4);
+			\draw (1,1) -- (-0.5,4);
+			\draw (6.5,4) -- (5,1);
+			\draw[dashed, red] (-1.5,1) -- (7.5,1) node[right] {\footnotesize $\eta = -1$};
+			\draw[dashed, red] (-1.5,2.5) -- (7.5,2.5) node[right] {\footnotesize $\eta = 0$};
+			\draw[dashed, red] (-1.5,4) -- (7.5,4) node[right] {\footnotesize $\eta = 1$};
+			\draw[dashed, teal] (3,4.5) -- (3,0) node[below] {\footnotesize $\xi = 0$};
+			\draw[dashed, teal] (1.5,0) -- (-1,5) node[above] {\footnotesize $\xi = -1$};
+			\draw[dashed, teal] (4.5,0) -- (7,5) node[above] {\footnotesize $\xi = 1$};
+			\draw[dashed, teal] (2.25,0) -- (1,5) node[above] {\footnotesize $\displaystyle \xi = -\frac{1}{2}$};
+			\draw[dashed, teal] (3.75,0) -- (5,5) node[above] {\footnotesize $\displaystyle \xi = \frac{1}{2}$};
+		\end{tikzpicture}
+	\end{center}
 \end{document}
