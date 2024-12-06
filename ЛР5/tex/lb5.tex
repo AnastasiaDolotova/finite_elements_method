@@ -42,7 +42,7 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 
 Неразмерность распределения перемещений будем определять антиградиентом, называемым деформациями 
 \[
-\varepsilon = \begin{bmatrix} \varepsilon_x \\ \varepsilon_y \\ \gamma_{xy} \end{bmatrix}^T
+\varepsilon = \begin{bmatrix} \varepsilon_x \\ \varepsilon_y \\ \gamma_{xy} \end{bmatrix}
 \]
 где 
 \[\varepsilon_x = \frac{\partial u}{\partial x}, \varepsilon_y = \frac{\partial v}{\partial y}, \gamma_{xy} = \frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}
@@ -335,7 +335,12 @@ K =
 
 Решая СЛАУ KX=F для редуцированных K и F, получаем вектор перемещений:
 
-\[ [0.,   0. ,   0.,    0.  ,  0. ,   0. ,   0.16,  0.02,  0.15 , 0.01 , 0.15, 0., 0.32,  0.03,  0.31,  0.02,  0.31,  0.01] \]
+\[ [0.,   0. ,   0.,    0.  ,  0. ,   0. ,   0.16,  0.02,  0.15 , 0.01 , 0.15, 0.01, 0.32,  0.03,  0.31,  0.02,  0.31,  0.01] \]
+
+\begin{figure}[h]
+	\centering
+\includegraphics[width=0.5\linewidth]{res.png}
+\end{figure} 
 
 
 \end{document}
